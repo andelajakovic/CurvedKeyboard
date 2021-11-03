@@ -1,11 +1,17 @@
 package com.example.curvedkeyboard;
 
+import android.content.Context;
+import android.graphics.Point;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.text.TextUtils;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputConnection;
+
+import java.util.List;
 
 public class MyInputMethodService extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
 
