@@ -5,6 +5,7 @@ import android.graphics.Point;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.text.TextUtils;
 import android.view.Display;
 import android.view.View;
@@ -18,12 +19,16 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
     @Override
     public View onCreateInputView() {
         // get the KeyboardView and add our Keyboard layout to it
-        KeyboardView keyboardView = (KeyboardView) getLayoutInflater().inflate(R.layout.keyboard_view, null);
+        /*KeyboardView keyboardView = (KeyboardView) getLayoutInflater().inflate(R.layout.keyboard_view, null);
         Keyboard keyboard = new Keyboard(this, R.xml.number_pad);
         keyboardView.setKeyboard(keyboard);
-        keyboardView.setOnKeyboardActionListener(this);
-        return keyboardView;
+        keyboardView.setOnKeyboardActionListener(this);*/
+
+        ConstraintLayout customKeyboardView = (ConstraintLayout) getLayoutInflater().inflate(R.layout.custom_keyboard_view, null);
+
+        return customKeyboardView;
     }
+
 
     @Override
     public void onKey(int primaryCode, int[] keyCodes) {
