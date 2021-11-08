@@ -4,7 +4,7 @@
         android:color="@color/semi"/>
 
     <corners
-        android:topRightRadius="360dp"
+            android:topRightRadius="360dp"
         />
 
 </shape>

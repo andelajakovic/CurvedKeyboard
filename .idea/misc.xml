@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/layout/custom_keyboard_view.xml" value="0.20697463768115942" />
+        <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.272265625" />
+        <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/drawable/curved_layout.xml" value="0.272265625" />
+        <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/drawable/curved_layout_left.xml" value="0.272265625" />
+        <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/drawable/ic_launcher_background.xml" value="0.272265625" />
+        <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/layout/custom_keyboard_view.xml" value="0.33" />
         <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/layout/key_preview.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/layout/keyboard_view.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/xml/method.xml" value="0.2396593673965937" />
