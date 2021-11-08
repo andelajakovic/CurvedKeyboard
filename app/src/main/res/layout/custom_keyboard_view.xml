@@ -10,8 +10,8 @@
         android:id="@+id/circularFlow"
         android:layout_width="730dp"
         android:layout_height="730dp"
-        app:circularflow_radiusInDP="330,330,330,330,330,268,268,268,268,268,206,206,206,206,126"
-        app:circularflow_angles="351,338,323,308,293,351,338,323,308,293,351,338,320,300,330"
+        app:circularflow_radiusInDP="330,330,330,330,330, 268,268,268,268,268,206,206,206,206,126"
+        app:circularflow_angles="351,338,323,308,293, 351,338,323,308,293,351,338,320,300,330"
         app:constraint_referenced_ids="p,o,i,u,y,comma,l,k,j,h,period,m,n,b,del"
         app:circularflow_viewCenter="@id/frame"
         app:layout_constraintBottom_toBottomOf="@id/frame"
@@ -153,6 +153,62 @@
         android:gravity="center"
         tools:ignore="MissingConstraints" />
 
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="730dp"
+        android:layout_height="730dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="parent">
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/space_frame"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:background="@color/semi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/right_frame"
+        android:layout_width="366dp"
+        android:layout_height="292dp"
+        android:background="@drawable/curved_layout"
+        app:layout_constraintBottom_toTopOf="@id/space_frame"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/left_frame"
+        android:layout_width="366dp"
+        android:layout_height="292dp"
+        android:background="@drawable/curved_layout_left"
+        app:layout_constraintBottom_toTopOf="@id/space_frame"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </FrameLayout>
+
+    <androidx.constraintlayout.helper.widget.CircularFlow
+        android:id="@+id/circularFlow2"
+        android:layout_width="730dp"
+        android:layout_height="730dp"
+        app:circularflow_radiusInDP="330,330,330,330,330,268,268,268,268,268,206,206,206,206,126"
+        app:circularflow_angles="-351,-338,-323,-308,-293, -351,-338,-323,-308,-293,-351,-338,-320,-300,-330"
+        app:constraint_referenced_ids="q,w,e,r,t,a,s,d,f,g,z,x,c,v"
+        app:circularflow_viewCenter="@id/left_frame"
+        app:layout_constraintBottom_toBottomOf="@id/left_frame"
+        app:layout_constraintEnd_toEndOf="@id/left_frame"
+        app:layout_constraintStart_toStartOf="@id/left_frame"
+        app:layout_constraintTop_toTopOf="@id/left_frame" />
+
+
     <TextView
         android:id="@+id/q"
         android:layout_width="wrap_content"
@@ -284,45 +340,4 @@
         android:gravity="center"
         tools:ignore="MissingConstraints" />
 
-    <FrameLayout
-        android:id="@+id/frame"
-        android:layout_width="730dp"
-        android:layout_height="730dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="parent">
-
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/space_frame"
-        android:layout_width="match_parent"
-        android:layout_height="73dp"
-        android:background="@color/semi"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/right_frame"
-        android:layout_width="366dp"
-        android:layout_height="292dp"
-        android:background="@drawable/curved_layout"
-        app:layout_constraintBottom_toTopOf="@id/space_frame"
-        app:layout_constraintEnd_toEndOf="parent">
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="366dp"
-        android:layout_height="292dp"
-        android:background="@drawable/curved_layout_left"
-        app:layout_constraintBottom_toTopOf="@id/space_frame"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
