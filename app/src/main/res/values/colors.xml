@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00ffffff</color>
+    <color name="semi">#80c4c4c4</color>
 </resources>
