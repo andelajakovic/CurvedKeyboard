@@ -148,7 +148,8 @@
         android:id="@+id/del"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DEL"
+        android:text=""
+        android:drawableLeft="@drawable/ic_baseline_keyboard_backspace_24"
         android:textSize="30sp"
         android:gravity="center"
         tools:ignore="MissingConstraints" />
@@ -347,7 +348,8 @@
         android:id="@+id/caps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CAPS"
+        android:text=""
+        android:drawableLeft="@drawable/ic_baseline_keyboard_capslock_24"
         android:textSize="30sp"
         android:gravity="center"
         tools:ignore="MissingConstraints" />

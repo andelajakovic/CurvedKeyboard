@@ -22,6 +22,9 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
     ConstraintLayout customKeyboardView;
     Point A, B, C;
 
+    private Keyboard keyboard;
+    private boolean isCaps = false;
+
 
     @Override
     public View onCreateInputView() {
@@ -91,8 +94,15 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                     ic.commitText("", 1);
                 }
                 break;
+            case Keyboard.KEYCODE_SHIFT:
+                isCaps = !isCaps;
+                keyboard.setShifted(isCaps);
+                customKeyboardView.invalidate();
+                break;
             default:
                 char code = (char) primaryCode;
+                if(Character.isLetter(code) && isCaps)
+                    code = Character.toUpperCase(code);
                 ic.commitText(String.valueOf(code), 1);
         }
     }
