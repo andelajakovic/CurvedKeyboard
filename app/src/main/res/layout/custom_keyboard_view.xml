@@ -35,7 +35,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text=""
-                android:layout_margin="8dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/space_layout"
                 app:layout_constraintStart_toEndOf="@+id/special"
                 app:layout_constraintEnd_toStartOf="@+id/done"
                 app:layout_constraintTop_toTopOf="parent"/>
