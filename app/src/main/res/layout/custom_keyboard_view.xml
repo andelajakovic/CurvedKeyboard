@@ -15,6 +15,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/special"
+                android:layout_width="166dp"
+                android:layout_height="match_parent"
+                android:text="123?"
+                android:textSize="30sp"
+                android:background="@color/transparent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <Button
+                android:id="@+id/space"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=""
+                android:layout_margin="8dp"
+                app:layout_constraintStart_toEndOf="@+id/special"
+                app:layout_constraintEnd_toStartOf="@+id/done"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <Button
+                android:id="@+id/done"
+                android:layout_width="166dp"
+                android:layout_height="match_parent"
+                android:text="DONE"
+                android:textSize="30sp"
+                android:background="@color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </FrameLayout>
 
 
