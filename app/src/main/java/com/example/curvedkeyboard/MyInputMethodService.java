@@ -45,7 +45,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
     private boolean isCaps = false;
 
     // Id-evi textViewa koji su potrebni prilikom povecanja slova
-    int[] ids = new int[]{R.id.q,R.id.w,R.id.e,R.id.t,R.id.y,R.id.u,R.id.i,R.id.o,R.id.p,
+    int[] ids = new int[]{R.id.q,R.id.w,R.id.e,R.id.r,R.id.t,R.id.y,R.id.u,R.id.i,R.id.o,R.id.p,
                           R.id.a,R.id.s,R.id.d,R.id.f,R.id.g,R.id.h,R.id.j,R.id.k,R.id.l,
                           R.id.z,R.id.x,R.id.c,R.id.v,R.id.b,R.id.n,R.id.m };
 
