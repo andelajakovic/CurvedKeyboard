@@ -3,6 +3,7 @@
     <solid
         android:color="@color/semi"/>
 
+
     <corners
             android:topLeftRadius="360dp"
         />

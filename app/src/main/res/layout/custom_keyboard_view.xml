@@ -22,11 +22,14 @@
 
             <Button
                 android:id="@+id/special"
-                android:layout_width="166dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="123?"
                 android:textSize="30sp"
-                android:background="@color/transparent"
+                android:textColor="#4a4f4b"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_button"
+                app:layout_constraintRight_toLeftOf="@+id/space"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -34,22 +37,24 @@
                 android:id="@+id/space"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text=""
                 android:layout_margin="10dp"
-                android:background="@drawable/space_layout"
-                app:layout_constraintStart_toEndOf="@+id/special"
+                android:background="@drawable/ripple_button"
+                android:text=""
                 app:layout_constraintEnd_toStartOf="@+id/done"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintStart_toEndOf="@+id/special"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/done"
-                android:layout_width="166dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:text="ENTER"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_button_enter"
+                android:text=""
                 android:textSize="30sp"
-                android:background="@color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintLeft_toRightOf="@+id/space"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import static com.example.curvedkeyboard.R.id.caps;
 import static com.example.curvedkeyboard.R.id.circularFlow_right;
 import static com.example.curvedkeyboard.R.id.custom;
 import static com.example.curvedkeyboard.R.id.u;
@@ -139,12 +140,14 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                     // Provjera ako je shift ukljucen
                     // Ide po id-evima i povecava / smanjuje slova u layoutu
                     if(isCaps){
+                        customKeyboardView.findViewById(caps).setBackgroundResource(R.drawable.ic_baseline_keyboard_capslock_blue_24);
                         for(int id : ids){
                             TextView t = (TextView) customKeyboardView.findViewById(id);
                             String s = t.getText().toString();
                             t.setText(s.toUpperCase());
                         }
                     }else{
+                        customKeyboardView.findViewById(caps).setBackgroundResource(R.drawable.ic_baseline_keyboard_capslock_24);
                         for(int id : ids){
                             TextView t = (TextView) customKeyboardView.findViewById(id);
                             String s = t.getText().toString();

@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Andrea/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/button_pressed.xml" value="0.25830078125" />
+        <entry key="..\:/Users/Andrea/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/curved_layout.xml" value="0.25830078125" />
+        <entry key="..\:/Users/Andrea/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/ic_baseline_keyboard_backspace_24.xml" value="0.193359375" />
+        <entry key="..\:/Users/Andrea/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/ic_baseline_keyboard_capslock_24.xml" value="0.25830078125" />
+        <entry key="..\:/Users/Andrea/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/ic_baseline_keyboard_capslock_blue_24.xml" value="0.25830078125" />
+        <entry key="..\:/Users/Andrea/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/ic_baseline_keyboard_return_24.xml" value="0.25830078125" />
+        <entry key="..\:/Users/Andrea/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/ripple_button.xml" value="0.25830078125" />
+        <entry key="..\:/Users/Andrea/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/ripple_button_enter.xml" value="0.25830078125" />
+        <entry key="..\:/Users/Andrea/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/space_layout.xml" value="0.25830078125" />
+        <entry key="..\:/Users/Andrea/StudioProjects/CurvedKeyboard/app/src/main/res/layout/custom_keyboard_view.xml" value="0.259375" />
         <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.272265625" />
         <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/drawable/curved_layout.xml" value="0.272265625" />
         <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/drawable/curved_layout_left.xml" value="0.272265625" />
