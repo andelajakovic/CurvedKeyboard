@@ -10,14 +10,19 @@ import androidx.constraintlayout.helper.widget.CircularFlow;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import static com.example.curvedkeyboard.R.id.circularFlow_right;
 import static com.example.curvedkeyboard.R.id.custom;
 import static com.example.curvedkeyboard.R.id.u;
+
+import java.util.Locale;
 
 public class MyInputMethodService extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
     private int[][] rightQwerty =
@@ -39,6 +44,10 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
     Keyboard keyboard;
     private boolean isCaps = false;
 
+    // Id-evi textViewa koji su potrebni prilikom povecanja slova
+    int[] ids = new int[]{R.id.q,R.id.w,R.id.e,R.id.t,R.id.y,R.id.u,R.id.i,R.id.o,R.id.p,
+                          R.id.a,R.id.s,R.id.d,R.id.f,R.id.g,R.id.h,R.id.j,R.id.k,R.id.l,
+                          R.id.z,R.id.x,R.id.c,R.id.v,R.id.b,R.id.n,R.id.m };
 
     @Override
     public View onCreateInputView() {
@@ -56,6 +65,27 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
         customKeyboardView = (ConstraintLayout) getLayoutInflater().inflate(R.layout.custom_keyboard_view, null);
         initListeners();
 
+        // Button space i done i njihove funkcionalnosti
+        Button space = (Button) customKeyboardView.findViewById(R.id.space);
+        Button enter = (Button) customKeyboardView.findViewById(R.id.done);
+
+        space.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                InputConnection ic = getCurrentInputConnection();
+                ic.commitText(" ",1);
+            }
+        });
+
+        enter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputConnection ic = getCurrentInputConnection();
+                ic.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
+
+            }
+        });
+
+
         return customKeyboardView;
     }
 
@@ -71,6 +101,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                 int primaryCode = getRightKeyCode();
                 InputConnection ic = getCurrentInputConnection();
 
+
                 if(primaryCode == Keyboard.KEYCODE_DELETE){
                     CharSequence selectedText = ic.getSelectedText(0);
                     if (TextUtils.isEmpty(selectedText)) {
@@ -80,10 +111,10 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                         // delete the selection
                         ic.commitText("", 1);
                     }
-                } else{
+                }
+                else{
                     char code = (char) primaryCode;
-                    if(Character.isLetter(code) && isCaps)
-                        code = Character.toUpperCase(code);
+                    if(Character.isLetter(code) && isCaps) code = Character.toUpperCase(code);
                     ic.commitText(String.valueOf(code), 1);
                 }
 
@@ -104,7 +135,24 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
                 if(primaryCode == Keyboard.KEYCODE_SHIFT){
                     isCaps = !isCaps;
-                    customKeyboardView.invalidate();
+
+                    // Provjera ako je shift ukljucen
+                    // Ide po id-evima i povecava / smanjuje slova u layoutu
+                    if(isCaps){
+                        for(int id : ids){
+                            TextView t = (TextView) customKeyboardView.findViewById(id);
+                            String s = t.getText().toString();
+                            t.setText(s.toUpperCase());
+                        }
+                    }else{
+                        for(int id : ids){
+                            TextView t = (TextView) customKeyboardView.findViewById(id);
+                            String s = t.getText().toString();
+                            t.setText(s.toLowerCase());
+                        }
+                    }
+
+                    //customKeyboardView.invalidate();
                 } else{
                     char code = (char) primaryCode;
                     if(Character.isLetter(code) && isCaps)
@@ -190,5 +238,6 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
     @Override
     public void swipeUp() { }
+
 
 }

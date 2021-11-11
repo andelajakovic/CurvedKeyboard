@@ -45,7 +45,7 @@
                 android:id="@+id/done"
                 android:layout_width="166dp"
                 android:layout_height="match_parent"
-                android:text="DONE"
+                android:text="ENTER"
                 android:textSize="30sp"
                 android:background="@color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
