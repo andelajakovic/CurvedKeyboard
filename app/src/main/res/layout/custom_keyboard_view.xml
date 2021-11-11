@@ -7,11 +7,12 @@
     android:layout_height="match_parent">
 
 
+
     <FrameLayout
         android:id="@+id/space_frame"
         android:layout_width="match_parent"
         android:layout_height="73dp"
-        android:background="@color/semi"
+        android:background="@color/whitepink"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -25,8 +26,8 @@
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="123?"
+                android:textColor="@color/pink"
                 android:textSize="30sp"
-                android:textColor="#4a4f4b"
                 android:layout_margin="10dp"
                 android:background="@drawable/ripple_button"
                 app:layout_constraintRight_toLeftOf="@+id/space"
@@ -39,7 +40,6 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:background="@drawable/ripple_button"
-                android:text=""
                 app:layout_constraintEnd_toStartOf="@+id/done"
                 app:layout_constraintStart_toEndOf="@+id/special"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +50,6 @@
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:background="@drawable/ripple_button_enter"
-                android:text=""
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/space"
@@ -226,6 +225,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:textColor="@color/grey"
         android:textSize="30sp"
         android:gravity="center"
         android:drawableLeft="@drawable/ic_baseline_keyboard_backspace_24"
@@ -402,6 +402,7 @@
         android:text=""
         android:textSize="30sp"
         android:gravity="center"
+        android:textColor="@color/grey"
         android:drawableLeft="@drawable/ic_baseline_keyboard_capslock_24"
         tools:ignore="MissingConstraints"/>
 
