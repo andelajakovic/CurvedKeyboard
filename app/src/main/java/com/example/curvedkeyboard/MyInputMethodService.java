@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.inputmethod.InputConnection;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import static com.example.curvedkeyboard.R.id.caps;
@@ -27,12 +28,12 @@ import java.util.Locale;
 
 public class MyInputMethodService extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
     private int[][] rightQwerty =
-                    {{121, 117, 105, 111, 112},     // y u i o p
+            {{121, 117, 105, 111, 112},     // y u i o p
                     {104, 106, 107, 108, 44},       // h j k l ,
                     {98,98,110,109,46}};            // b n m .
 
     private int[][] leftQwerty =
-                    {{113, 119, 101, 114, 116},     // q w e r t
+            {{113, 119, 101, 114, 116},     // q w e r t
                     {97, 115, 100, 102, 103},        // a s d f g
                     {122, 120, 99, 118, 118}};           // z x c v
 
@@ -47,8 +48,13 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
     // Id-evi textViewa koji su potrebni prilikom povecanja slova
     int[] ids = new int[]{R.id.q,R.id.w,R.id.e,R.id.r,R.id.t,R.id.y,R.id.u,R.id.i,R.id.o,R.id.p,
-                          R.id.a,R.id.s,R.id.d,R.id.f,R.id.g,R.id.h,R.id.j,R.id.k,R.id.l,
-                          R.id.z,R.id.x,R.id.c,R.id.v,R.id.b,R.id.n,R.id.m };
+            R.id.a,R.id.s,R.id.d,R.id.f,R.id.g,R.id.h,R.id.j,R.id.k,R.id.l,
+            R.id.z,R.id.x,R.id.c,R.id.v,R.id.b,R.id.n,R.id.m };
+
+    @Override
+    public void onInitializeInterface() {
+        super.onInitializeInterface();
+    }
 
     @Override
     public View onCreateInputView() {
@@ -68,7 +74,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
         // Button space i done i njihove funkcionalnosti
         Button space = (Button) customKeyboardView.findViewById(R.id.space);
-        Button enter = (Button) customKeyboardView.findViewById(R.id.done);
+        ImageButton enter = (ImageButton) customKeyboardView.findViewById(R.id.done);
 
         space.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
