@@ -6,8 +6,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <FrameLayout
+        android:id="@+id/space_frame"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:background="@color/semi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/special"
+                android:layout_width="166dp"
+                android:layout_height="match_parent"
+                android:text="123?"
+                android:textSize="30sp"
+                android:background="@color/transparent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <Button
+                android:id="@+id/space"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text=""
+                android:layout_margin="10dp"
+                android:background="@drawable/space_layout"
+                app:layout_constraintStart_toEndOf="@+id/special"
+                app:layout_constraintEnd_toStartOf="@+id/done"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <Button
+                android:id="@+id/done"
+                android:layout_width="166dp"
+                android:layout_height="match_parent"
+                android:text="ENTER"
+                android:textSize="30sp"
+                android:background="@color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </FrameLayout>
+
+
+    <!-- ................................................................................................................ -->
+
+
+    <FrameLayout
+        android:id="@+id/right_frame"
+        android:layout_width="366dp"
+        android:layout_height="292dp"
+        android:background="@drawable/curved_layout"
+        app:layout_constraintBottom_toTopOf="@id/space_frame"
+        app:layout_constraintEnd_toEndOf="parent">
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/center_right"
+        android:layout_width="730dp"
+        android:layout_height="730dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="parent">
+    </FrameLayout>
+
     <androidx.constraintlayout.helper.widget.CircularFlow
-        android:id="@+id/circularFlow"
+        android:id="@+id/circularFlow_right"
         android:layout_width="730dp"
         android:layout_height="730dp"
         app:circularflow_radiusInDP="330,330,330,330,330, 268,268,268,268,268,206,206,206,206,126"
@@ -18,7 +91,6 @@
         app:layout_constraintEnd_toEndOf="@id/center_right"
         app:layout_constraintStart_toStartOf="@id/center_right"
         app:layout_constraintTop_toTopOf="@id/center_right" />
-
 
     <TextView
         android:id="@+id/p"
@@ -148,40 +220,15 @@
         android:id="@+id/del"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DEL"
+        android:text=""
         android:textSize="30sp"
         android:gravity="center"
+        android:drawableLeft="@drawable/ic_baseline_keyboard_backspace_24"
         tools:ignore="MissingConstraints" />
 
 
-    <FrameLayout
-        android:id="@+id/center_right"
-        android:layout_width="730dp"
-        android:layout_height="730dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="parent">
-    </FrameLayout>
+    <!-- ................................................................................................................ -->
 
-    <FrameLayout
-        android:id="@+id/space_frame"
-        android:layout_width="match_parent"
-        android:layout_height="73dp"
-        android:background="@color/semi"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/right_frame"
-        android:layout_width="366dp"
-        android:layout_height="292dp"
-        android:background="@drawable/curved_layout"
-        app:layout_constraintBottom_toTopOf="@id/space_frame"
-        app:layout_constraintEnd_toEndOf="parent">
-    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/left_frame"
@@ -203,7 +250,7 @@
     </FrameLayout>
 
     <androidx.constraintlayout.helper.widget.CircularFlow
-        android:id="@+id/circularFlow2"
+        android:id="@+id/circularFlow_left"
         android:layout_width="730dp"
         android:layout_height="730dp"
         app:circularflow_radiusInDP="330,330,330,330,330, 268,268,268,268,268,206,206,206,206,126"
@@ -347,10 +394,11 @@
         android:id="@+id/caps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CAPS"
+        android:text=""
         android:textSize="30sp"
         android:gravity="center"
-        tools:ignore="MissingConstraints" />
+        android:drawableLeft="@drawable/ic_baseline_keyboard_capslock_24"
+        tools:ignore="MissingConstraints"/>
 
 
 
