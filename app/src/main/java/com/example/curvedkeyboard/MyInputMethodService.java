@@ -1,5 +1,6 @@
 package com.example.curvedkeyboard;
 
+import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.inputmethodservice.InputMethodService;
@@ -8,11 +9,15 @@ import android.inputmethodservice.KeyboardView;
 
 import androidx.constraintlayout.helper.widget.CircularFlow;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
+
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.inputmethod.InputConnection;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +30,8 @@ import static com.example.curvedkeyboard.R.id.custom;
 import static com.example.curvedkeyboard.R.id.u;
 
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MyInputMethodService extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
     private int[][] rightQwerty =
@@ -45,6 +52,8 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
     Keyboard keyboard;
     private boolean isCaps = false;
+    public static boolean flag = false;
+
 
     // Id-evi textViewa koji su potrebni prilikom povecanja slova
     int[] ids = new int[]{R.id.q,R.id.w,R.id.e,R.id.r,R.id.t,R.id.y,R.id.u,R.id.i,R.id.o,R.id.p,
@@ -76,7 +85,9 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
         Button space = (Button) customKeyboardView.findViewById(R.id.space);
         ImageButton enter = (ImageButton) customKeyboardView.findViewById(R.id.done);
 
+
         space.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 InputConnection ic = getCurrentInputConnection();
                 ic.commitText(" ",1);
@@ -108,25 +119,51 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                 int primaryCode = getRightKeyCode();
                 InputConnection ic = getCurrentInputConnection();
 
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        flag = true;
+                        // Potrebna je nova dretva da se moze dugo brisati i da izade iz petlje
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                while (flag) {
+                                    if(primaryCode == keyboard.KEYCODE_DELETE) {
+                                        CharSequence selectedText = ic.getSelectedText(0);
+                                        if (TextUtils.isEmpty(selectedText)) {
+                                            ic.deleteSurroundingText(1, 0);
+                                        } else {
+                                            ic.commitText("", 1);
+                                        }
+                                    }
+                                    try {
+                                        // Dretva ide na spavanje da del ne bude prebrz
+                                        Thread.sleep(200);
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }).start();
+                    break;
 
-                if(primaryCode == Keyboard.KEYCODE_DELETE){
-                    CharSequence selectedText = ic.getSelectedText(0);
-                    if (TextUtils.isEmpty(selectedText)) {
-                        // no selection, so delete previous character
-                        ic.deleteSurroundingText(1, 0);
-                    } else {
-                        // delete the selection
-                        ic.commitText("", 1);
-                    }
-                }
-                else{
-                    char code = (char) primaryCode;
-                    if(Character.isLetter(code) && isCaps) code = Character.toUpperCase(code);
-                    ic.commitText(String.valueOf(code), 1);
+                    case MotionEvent.ACTION_UP:
+                        flag = false;
+                        if(primaryCode == keyboard.KEYCODE_DELETE) {
+                            // Ovako samo jedan karakter brise
+                            ic.commitText("", 0);
+                        }else {
+                            char code = (char) primaryCode;
+                            if (Character.isLetter(code) && isCaps)
+                                code = Character.toUpperCase(code);
+                                ic.commitText(String.valueOf(code), 1);
+                        }
+                    break;
+
                 }
 
-                return false;
+                return true;
             }
+
         });
 
         customKeyboardView.findViewById(R.id.left_frame).setOnTouchListener(new View.OnTouchListener() {

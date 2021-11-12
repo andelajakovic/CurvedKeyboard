@@ -38,6 +38,7 @@
                 android:id="@+id/space"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:isRepeatable="true"
                 android:layout_margin="10dp"
                 android:background="@drawable/ripple_button"
                 app:layout_constraintEnd_toStartOf="@+id/done"
