@@ -7,11 +7,12 @@
     android:layout_height="match_parent">
 
 
+
     <FrameLayout
         android:id="@+id/space_frame"
         android:layout_width="match_parent"
         android:layout_height="73dp"
-        android:background="@color/semi"
+        android:background="@color/whitepink"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -22,11 +23,14 @@
 
             <Button
                 android:id="@+id/special"
-                android:layout_width="166dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:text="123?"
+                android:textColor="@color/pink"
                 android:textSize="30sp"
-                android:background="@color/transparent"
+                android:layout_margin="10dp"
+                android:background="@drawable/ripple_button"
+                app:layout_constraintRight_toLeftOf="@+id/space"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -34,22 +38,25 @@
                 android:id="@+id/space"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text=""
+                android:isRepeatable="true"
                 android:layout_margin="10dp"
-                android:background="@drawable/space_layout"
-                app:layout_constraintStart_toEndOf="@+id/special"
+                android:background="@drawable/ripple_button"
                 app:layout_constraintEnd_toStartOf="@+id/done"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintStart_toEndOf="@+id/special"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/done"
-                android:layout_width="166dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:text="ENTER"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_baseline_keyboard_return_24"
+                android:background="@drawable/ripple_button_enter"
+                android:text=""
                 android:textSize="30sp"
-                android:background="@color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintLeft_toRightOf="@+id/space"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -221,9 +228,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:textColor="@color/grey"
         android:textSize="30sp"
         android:gravity="center"
-        android:drawableLeft="@drawable/ic_baseline_keyboard_backspace_24"
+        android:background="@drawable/ic_baseline_keyboard_backspace_24"
         tools:ignore="MissingConstraints" />
 
 
@@ -397,7 +405,8 @@
         android:text=""
         android:textSize="30sp"
         android:gravity="center"
-        android:drawableLeft="@drawable/ic_baseline_keyboard_capslock_24"
+        android:textColor="@color/grey"
+        android:background="@drawable/ic_baseline_keyboard_capslock_24"
         tools:ignore="MissingConstraints"/>
 
 
