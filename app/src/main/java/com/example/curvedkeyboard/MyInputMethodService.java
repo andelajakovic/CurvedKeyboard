@@ -1,6 +1,7 @@
 package com.example.curvedkeyboard;
 
 import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.inputmethodservice.InputMethodService;
@@ -10,6 +11,7 @@ import android.inputmethodservice.KeyboardView;
 import androidx.constraintlayout.helper.widget.CircularFlow;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.content.ContextCompat;
 
 import android.os.Handler;
 import android.text.TextUtils;
@@ -22,8 +24,10 @@ import android.view.inputmethod.InputConnection;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import static com.example.curvedkeyboard.R.drawable.*;
 import static com.example.curvedkeyboard.R.id.caps;
 import static com.example.curvedkeyboard.R.id.circularFlow_right;
 import static com.example.curvedkeyboard.R.id.custom;
@@ -82,6 +86,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
         initListeners();
 
         // Button space i done i njihove funkcionalnosti
+        Button special = (Button) customKeyboardView.findViewById(R.id.special);
         Button space = (Button) customKeyboardView.findViewById(R.id.space);
         ImageButton enter = (ImageButton) customKeyboardView.findViewById(R.id.done);
 
@@ -108,6 +113,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
     }
 
     private void initListeners() {
+
         customKeyboardView.findViewById(R.id.right_frame).setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -167,6 +173,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
         });
 
         customKeyboardView.findViewById(R.id.left_frame).setOnTouchListener(new View.OnTouchListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int x, y;
@@ -179,18 +186,20 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
                 if(primaryCode == Keyboard.KEYCODE_SHIFT){
                     isCaps = !isCaps;
+                    ImageView caps = (ImageView) customKeyboardView.findViewById(R.id.caps);
 
                     // Provjera ako je shift ukljucen
                     // Ide po id-evima i povecava / smanjuje slova u layoutu
                     if(isCaps){
-                        customKeyboardView.findViewById(caps).setBackgroundResource(R.drawable.ic_baseline_keyboard_capslock_blue_24);
+                        caps.setColorFilter(ContextCompat.getColor(customKeyboardView.getContext(), R.color.pink));
+
                         for(int id : ids){
                             TextView t = (TextView) customKeyboardView.findViewById(id);
                             String s = t.getText().toString();
                             t.setText(s.toUpperCase());
                         }
                     }else{
-                        customKeyboardView.findViewById(caps).setBackgroundResource(R.drawable.ic_baseline_keyboard_capslock_24);
+                        caps.setColorFilter(R.color.grey);
                         for(int id : ids){
                             TextView t = (TextView) customKeyboardView.findViewById(id);
                             String s = t.getText().toString();
