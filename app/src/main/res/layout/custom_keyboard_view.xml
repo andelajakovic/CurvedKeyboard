@@ -6,65 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
+    <Button
+        android:id="@+id/space"
+        android:layout_width="0dp"
+        android:layout_height="53dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/space_layout"
+        android:isRepeatable="true"
+        app:layout_constraintStart_toEndOf="@+id/guideline_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guideline_right"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <FrameLayout
         android:id="@+id/space_frame"
         android:layout_width="match_parent"
         android:layout_height="73dp"
         android:background="@color/whitepink"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/special"
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:background="@drawable/space_layout"
-                android:text="123?"
-                android:textColor="@drawable/button_text_color"
-                android:textSize="24sp"
-                app:layout_constraintRight_toLeftOf="@+id/space"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/space"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:background="@drawable/space_layout"
-                android:isRepeatable="true"
-                app:layout_constraintEnd_toStartOf="@+id/done"
-                app:layout_constraintStart_toEndOf="@+id/special"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
-
-            <ImageButton
-                android:id="@+id/done"
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:background="@drawable/ripple_button_enter"
-                android:src="@drawable/ic_baseline_keyboard_return_24"
-                android:text=""
-                android:textSize="30sp"
-                android:tint="#ffffff"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintLeft_toRightOf="@+id/space"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </FrameLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="UnusedAttribute"/>
 
 
     <!-- ................................................................................................................ -->
@@ -72,12 +34,25 @@
 
     <FrameLayout
         android:id="@+id/right_frame"
-        android:layout_width="366dp"
-        android:layout_height="292dp"
+        android:layout_width="370dp"
+        android:layout_height="370dp"
         android:background="@drawable/curved_layout"
-        app:layout_constraintBottom_toTopOf="@id/space_frame"
-        app:layout_constraintEnd_toEndOf="parent">
-    </FrameLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/done"
+        android:layout_width="120dp"
+        android:layout_height="53dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/ripple_button_enter"
+        android:src="@drawable/ic_baseline_keyboard_return_24"
+        android:text=""
+        android:textSize="30sp"
+        android:tint="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
     <FrameLayout
         android:id="@+id/center_right"
@@ -85,18 +60,17 @@
         android:layout_height="730dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="parent">
-    </FrameLayout>
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"/>
 
     <androidx.constraintlayout.helper.widget.CircularFlow
         android:id="@+id/circularFlow_right"
         android:layout_width="730dp"
         android:layout_height="730dp"
-        app:circularflow_radiusInDP="330,330,330,330,330, 268,268,268,268,268,206,206,206,206,126"
-        app:circularflow_angles="351,338,323,308,293, 351,338,323,308,293,351,338,320,300,330"
-        app:constraint_referenced_ids="p,o,i,u,y,comma,l,k,j,h,period,m,n,b,del"
+        app:circularflow_angles="345,335,325,315,305, 354,342,330,318,306,352,336,320,304,330"
+        app:circularflow_radiusInDP="329,329,329,329,329, 256,256,256,256,256,183,183,183,183,120"
         app:circularflow_viewCenter="@id/center_right"
+        app:constraint_referenced_ids="p,o,i,u,y,comma,l,k,j,h,period,m,n,b,del"
         app:layout_constraintBottom_toBottomOf="@id/center_right"
         app:layout_constraintEnd_toEndOf="@id/center_right"
         app:layout_constraintStart_toStartOf="@id/center_right"
@@ -120,121 +94,124 @@
         android:text="o"
         android:textSize="30sp"
         tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/i"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="i"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/u"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="u"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/y"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="y"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/comma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text=","
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/l"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="l"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/k"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="k"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/j"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="j"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="h"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/period"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="."
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/m"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="m"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/n"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="n"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="b"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/del"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
         android:gravity="center"
         android:src="@drawable/ic_baseline_keyboard_backspace_24"
-        tools:ignore="MissingConstraints"
-        app:tint="@color/grey" />
+        android:text=""
+        app:tint="@color/grey"
+        tools:ignore="MissingConstraints" />
 
 
     <!-- ................................................................................................................ -->
@@ -242,12 +219,23 @@
 
     <FrameLayout
         android:id="@+id/left_frame"
-        android:layout_width="366dp"
-        android:layout_height="292dp"
+        android:layout_width="370dp"
+        android:layout_height="370dp"
         android:background="@drawable/curved_layout_left"
-        app:layout_constraintBottom_toTopOf="@id/space_frame"
-        app:layout_constraintStart_toStartOf="parent">
-    </FrameLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/special"
+        android:layout_width="120dp"
+        android:layout_height="53dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/space_layout"
+        android:text="123?"
+        android:textColor="@drawable/button_text_color"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <FrameLayout
         android:id="@+id/center_left"
@@ -255,18 +243,17 @@
         android:layout_height="730dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-    </FrameLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"/>
 
     <androidx.constraintlayout.helper.widget.CircularFlow
         android:id="@+id/circularFlow_left"
         android:layout_width="730dp"
         android:layout_height="730dp"
-        app:circularflow_radiusInDP="330,330,330,330,330, 268,268,268,268,268,206,206,206,206,126"
-        app:circularflow_angles="-351,-338,-323,-308,-293,-351,-338,-323,-308,-293,-351,-338,-320,-300,-330"
-        app:constraint_referenced_ids="q,w,e,r,t,a,s,d,f,g,z,x,c,v,caps"
+        app:circularflow_angles="5,15,25,35,45,6,18,30,42,54,8,24,40,56,30"
+        app:circularflow_radiusInDP="329,329,329,329,329, 256,256,256,256,256,183,183,183,183,120"
         app:circularflow_viewCenter="@id/center_left"
+        app:constraint_referenced_ids="q,w,e,r,t,a,s,d,f,g,z,x,c,v,caps"
         app:layout_constraintBottom_toBottomOf="@id/center_left"
         app:layout_constraintEnd_toEndOf="@id/center_left"
         app:layout_constraintStart_toStartOf="@id/center_left"
@@ -293,102 +280,104 @@
         android:text="w"
         android:textSize="30sp"
         tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/e"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="e"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/r"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="r"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/t"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="t"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="a"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/s"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="s"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="d"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/f"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="f"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/g"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="g"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/z"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="z"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/x"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="x"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/c"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="c"
         android:textSize="30sp"
-        android:gravity="center"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -408,12 +397,22 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:src="@drawable/ic_baseline_keyboard_capslock_24"
-        tools:ignore="MissingConstraints"
-        app:tint="@color/grey" />
+        app:tint="@color/grey"
+        tools:ignore="MissingConstraints" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="130dp" />
 
-
-
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="130dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

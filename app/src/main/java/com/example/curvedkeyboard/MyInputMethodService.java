@@ -41,12 +41,12 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
     private int[][] rightQwerty =
             {{121, 117, 105, 111, 112},     // y u i o p
                     {104, 106, 107, 108, 44},       // h j k l ,
-                    {98,98,110,109,46}};            // b n m .
+                    {0,98,110,109,46}};            // b n m .
 
     private int[][] leftQwerty =
             {{113, 119, 101, 114, 116},     // q w e r t
                     {97, 115, 100, 102, 103},        // a s d f g
-                    {122, 120, 99, 118, 118}};           // z x c v
+                    {122, 120, 99, 118, 0}};           // z x c v
 
     private int screenWidth, screenHeight;
     private float density;
@@ -90,6 +90,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
         Button space = (Button) customKeyboardView.findViewById(R.id.space);
         ImageButton enter = (ImageButton) customKeyboardView.findViewById(R.id.done);
 
+        space.bringToFront();
 
         space.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +120,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
             public boolean onTouch(View v, MotionEvent event) {
                 int x, y;
                 x = (int) (screenWidth - (customKeyboardView.findViewById(R.id.right_frame).getWidth() * density - (int) event.getX()));
-                y = (int) (screenHeight - (customKeyboardView.findViewById(R.id.space_frame).getHeight() * density + customKeyboardView.findViewById(R.id.right_frame).getHeight() * density - (int) event.getY()));
+                y = (int) (screenHeight - (customKeyboardView.findViewById(R.id.right_frame).getHeight() * density - (int) event.getY()));
                 touchPoint = new Point(x, y);
 
                 int primaryCode = getRightKeyCode();
@@ -150,7 +151,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                                 }
                             }
                         }).start();
-                    break;
+                        break;
 
                     case MotionEvent.ACTION_UP:
                         flag = false;
@@ -161,9 +162,9 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                             char code = (char) primaryCode;
                             if (Character.isLetter(code) && isCaps)
                                 code = Character.toUpperCase(code);
-                                ic.commitText(String.valueOf(code), 1);
+                            ic.commitText(String.valueOf(code), 1);
                         }
-                    break;
+                        break;
 
                 }
 
@@ -178,7 +179,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
             public boolean onTouch(View v, MotionEvent event) {
                 int x, y;
                 x = (int) event.getX();
-                y = (int) (screenHeight - (customKeyboardView.findViewById(R.id.space_frame).getHeight() * density + customKeyboardView.findViewById(R.id.left_frame).getHeight() * density - (int) event.getY()));
+                y = (int) (screenHeight - (customKeyboardView.findViewById(R.id.left_frame).getHeight() * density - (int) event.getY()));
                 touchPoint = new Point(x, y);
 
                 int primaryCode = getLeftKeyCode();
@@ -230,16 +231,33 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
         int i = 0, j = 0;
 
-        if(disAC <= 166*density) return -5; // DEL
-        if(disAC <= 365*density && disAC > 292*density) i = 0;
-        else if (disAC <= 292*density && disAC > 219*density) i = 1;
-        else if (disAC <= 219*density && disAC > 166*density) i = 2;
-
-        if(angle < 15) j = 4;
-        else if(angle >= 15 && angle < 30) j = 3;
-        else if(angle >= 30 && angle < 45) j = 2;
-        else if(angle >= 45 && angle < 60) j = 1;
-        else if(angle >= 60 && angle < 75) j = 0;
+        if(disAC <= 146*density && touchPoint.y > 73) return -5; // DEL
+        if(disAC <= 365*density && disAC > 292*density){
+            i = 0;
+            if(angle >= 10 && angle < 20) j = 4;
+            else if(angle >= 20 && angle < 30) j = 3;
+            else if(angle >= 30 && angle < 40) j = 2;
+            else if(angle >= 40 && angle < 50) j = 1;
+            else if(angle >= 50 && angle < 60) j = 0;
+            else return 0;
+        }
+        else if (disAC <= 292*density && disAC > 219*density){
+            i = 1;
+            if(angle >= 0 && angle < 12) j = 4;
+            else if(angle >= 12 && angle < 24) j = 3;
+            else if(angle >= 24 && angle < 36) j = 2;
+            else if(angle >= 36 && angle < 48) j = 1;
+            else if(angle >= 48 && angle < 60) j = 0;
+            else return 0;
+        }
+        else if (disAC <= 219*density && disAC > 146*density){
+            i = 2;
+            if(angle >= 0 && angle < 16) j = 4;
+            else if(angle >= 16 && angle < 32) j = 3;
+            else if(angle >= 32 && angle < 48) j = 2;
+            else if(angle >= 48 && angle < 64) j = 1;
+            else return 0;
+        }
 
         return rightQwerty[i][j];
 
@@ -255,16 +273,33 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
         int i = 0, j = 0;
 
-        if(disAC <= 166*density) return -1; // SHIFT
-        if(disAC <= 365*density && disAC > 292*density) i = 0;
-        else if (disAC <= 292*density && disAC > 219*density) i = 1;
-        else if (disAC <= 219*density && disAC > 166*density) i = 2;
-
-        if(angle < 15) j = 0;
-        else if(angle >= 15 && angle < 30) j = 1;
-        else if(angle >= 30 && angle < 45) j = 2;
-        else if(angle >= 45 && angle < 60) j = 3;
-        else if(angle >= 60 && angle < 75) j = 4;
+        if(disAC <= 146*density && touchPoint.y > 73) return -1; // DEL
+        if(disAC <= 365*density && disAC > 292*density){
+            i = 0;
+            if(angle >= 0 && angle < 10) j = 0;
+            else if(angle >= 10 && angle < 20) j = 1;
+            else if(angle >= 20 && angle < 30) j = 2;
+            else if(angle >= 30 && angle < 40) j = 3;
+            else if(angle >= 40 && angle < 50) j = 4;
+            else return 0;
+        }
+        else if (disAC <= 292*density && disAC > 219*density){
+            i = 1;
+            if(angle >= 0 && angle < 12) j = 0;
+            else if(angle >= 12 && angle < 24) j = 1;
+            else if(angle >= 24 && angle < 36) j = 2;
+            else if(angle >= 36 && angle < 48) j = 3;
+            else if(angle >= 48 && angle < 60) j = 4;
+            else return 0;
+        }
+        else if (disAC <= 219*density && disAC > 146*density){
+            i = 2;
+            if(angle >= 0 && angle < 16) j = 0;
+            else if(angle >= 16 && angle < 32) j = 1;
+            else if(angle >= 32 && angle < 48) j = 2;
+            else if(angle >= 48 && angle < 64) j = 3;
+            else return 0;
+        }
 
         return leftQwerty[i][j];
     }
