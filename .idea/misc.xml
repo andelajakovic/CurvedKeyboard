@@ -26,10 +26,18 @@
         <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/layout/keyboard_view.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/xml/method.xml" value="0.2396593673965937" />
         <entry key="..\:/Users/Korisnik/AndroidStudioProjects/CurvedKeyboard/app/src/main/res/xml/number_pad.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/andel/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/button_text_color.xml" value="0.22777777777777777" />
         <entry key="..\:/Users/andel/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/curved_layout.xml" value="0.206640625" />
         <entry key="..\:/Users/andel/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/curved_layout_left.xml" value="0.206640625" />
+        <entry key="..\:/Users/andel/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/ic_baseline_keyboard_capslock_24.xml" value="0.22777777777777777" />
+        <entry key="..\:/Users/andel/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/ic_baseline_keyboard_capslock_blue_24.xml" value="0.22777777777777777" />
+        <entry key="..\:/Users/andel/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/ic_baseline_keyboard_return_24.xml" value="0.16875" />
+        <entry key="..\:/Users/andel/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/ripple_button.xml" value="0.16875" />
+        <entry key="..\:/Users/andel/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/ripple_button_enter.xml" value="0.16875" />
         <entry key="..\:/Users/andel/StudioProjects/CurvedKeyboard/app/src/main/res/drawable/space_layout.xml" value="0.206640625" />
-        <entry key="..\:/Users/andel/StudioProjects/CurvedKeyboard/app/src/main/res/layout/custom_keyboard_view.xml" value="0.264" />
+        <entry key="..\:/Users/andel/StudioProjects/CurvedKeyboard/app/src/main/res/font/lobster.xml" value="0.22777777777777777" />
+        <entry key="..\:/Users/andel/StudioProjects/CurvedKeyboard/app/src/main/res/font/monospace.xml" value="0.22777777777777777" />
+        <entry key="..\:/Users/andel/StudioProjects/CurvedKeyboard/app/src/main/res/layout/custom_keyboard_view.xml" value="0.33" />
       </map>
     </option>
   </component>

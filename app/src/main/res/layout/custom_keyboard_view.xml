@@ -25,38 +25,41 @@
                 android:id="@+id/special"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:text="123?"
-                android:textColor="@color/pink"
-                android:textSize="30sp"
                 android:layout_margin="10dp"
-                android:background="@drawable/ripple_button"
+                android:background="@drawable/space_layout"
+                android:text="123?"
+                android:textColor="@drawable/button_text_color"
+                android:textSize="24sp"
                 app:layout_constraintRight_toLeftOf="@+id/space"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/space"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:isRepeatable="true"
                 android:layout_margin="10dp"
-                android:background="@drawable/ripple_button"
+                android:background="@drawable/space_layout"
+                android:isRepeatable="true"
                 app:layout_constraintEnd_toStartOf="@+id/done"
                 app:layout_constraintStart_toEndOf="@+id/special"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
             <ImageButton
                 android:id="@+id/done"
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                android:src="@drawable/ic_baseline_keyboard_return_24"
                 android:background="@drawable/ripple_button_enter"
+                android:src="@drawable/ic_baseline_keyboard_return_24"
                 android:text=""
                 android:textSize="30sp"
+                android:tint="#ffffff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/space"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -223,16 +226,15 @@
         android:gravity="center"
         tools:ignore="MissingConstraints" />
 
-    <TextView
+    <ImageView
         android:id="@+id/del"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textColor="@color/grey"
-        android:textSize="30sp"
         android:gravity="center"
-        android:background="@drawable/ic_baseline_keyboard_backspace_24"
-        tools:ignore="MissingConstraints" />
+        android:src="@drawable/ic_baseline_keyboard_backspace_24"
+        tools:ignore="MissingConstraints"
+        app:tint="@color/grey" />
 
 
     <!-- ................................................................................................................ -->
@@ -393,21 +395,21 @@
         android:id="@+id/v"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="v"
         android:textSize="30sp"
-        android:gravity="center"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="171dp"
+        tools:layout_editor_absoluteY="1157dp" />
 
-    <TextView
+    <ImageView
         android:id="@+id/caps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="30sp"
         android:gravity="center"
-        android:textColor="@color/grey"
-        android:background="@drawable/ic_baseline_keyboard_capslock_24"
-        tools:ignore="MissingConstraints"/>
+        android:src="@drawable/ic_baseline_keyboard_capslock_24"
+        tools:ignore="MissingConstraints"
+        app:tint="@color/grey" />
 
 
 

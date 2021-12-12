@@ -2,15 +2,33 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="@color/semi"/>
+            <solid android:color="#FDCCE6"/>
             <corners android:radius="8dp" />
         </shape>
     </item>
-    <item android:bottom="2dp" android:left="2dp">
-        <shape>
-            <solid android:color="@color/pink"/>
-            <corners android:radius="8dp" />
-        </shape>
+    <item>
+        <layer-list>
+            <item android:right="4dp" android:top="5dp">
+                <shape>
+                    <corners android:radius="7dp" />
+                    <solid android:color="#C3C3C3" />
+                </shape>
+            </item>
+
+            <item android:bottom="2dp" android:right="2dp">
+                <shape>
+                    <gradient
+                        android:type="linear"
+                        android:angle="90"
+                        android:startColor="#FDCCE6"
+                        android:endColor="@color/pink" />
+                    <corners android:radius="8dp" />
+
+                </shape>
+            </item>
+
+
+        </layer-list>
     </item>
 
 </selector>
