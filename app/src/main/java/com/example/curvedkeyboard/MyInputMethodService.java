@@ -258,6 +258,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
             else if(angle >= 48 && angle < 64) j = 1;
             else return 0;
         }
+        else return 0;
 
         return rightQwerty[i][j];
 
@@ -300,6 +301,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
             else if(angle >= 48 && angle < 64) j = 3;
             else return 0;
         }
+        else return 0;
 
         return leftQwerty[i][j];
     }
