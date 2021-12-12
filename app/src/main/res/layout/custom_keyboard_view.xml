@@ -6,6 +6,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/transparent"
+        app:layout_constraintBottom_toTopOf="@id/left_frame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="UnusedAttribute"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/popup_preview"
+        android:layout_width="52dp"
+        android:layout_height="146dp"
+        android:visibility="gone"
+        android:background="@drawable/ripple_button_enter"
+        tools:ignore="MissingConstraints,UnusedAttribute">
+
+        <TextView
+            android:id="@+id/letter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <Button
         android:id="@+id/space"
         android:layout_width="0dp"

@@ -31,8 +31,12 @@ import static com.example.curvedkeyboard.R.drawable.*;
 import static com.example.curvedkeyboard.R.id.caps;
 import static com.example.curvedkeyboard.R.id.circularFlow_right;
 import static com.example.curvedkeyboard.R.id.custom;
+import static com.example.curvedkeyboard.R.id.letter;
+import static com.example.curvedkeyboard.R.id.popup_preview;
 import static com.example.curvedkeyboard.R.id.u;
+import static com.example.curvedkeyboard.R.id.visible;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -53,6 +57,8 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
     private ConstraintLayout customKeyboardView;
     private Point bottomRightCorner, bottomLeftCorner, topRightCorner, topLeftCorner, touchPoint;
+    private ConstraintLayout popupPreview;
+    char code = 0;
 
     Keyboard keyboard;
     private boolean isCaps = false;
@@ -63,6 +69,11 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
     int[] ids = new int[]{R.id.q,R.id.w,R.id.e,R.id.r,R.id.t,R.id.y,R.id.u,R.id.i,R.id.o,R.id.p,
             R.id.a,R.id.s,R.id.d,R.id.f,R.id.g,R.id.h,R.id.j,R.id.k,R.id.l,
             R.id.z,R.id.x,R.id.c,R.id.v,R.id.b,R.id.n,R.id.m };
+
+    private int[][] leftIds =
+            {{R.id.q,R.id.w,R.id.e,R.id.r,R.id.t},     // q w e r t
+                    {R.id.a,R.id.s,R.id.d,R.id.f,R.id.g},        // a s d f g
+                    {R.id.z,R.id.x,R.id.c,R.id.v, 0}};           // z x c v
 
     @Override
     public void onInitializeInterface() {
@@ -89,8 +100,10 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
         Button special = (Button) customKeyboardView.findViewById(R.id.special);
         Button space = (Button) customKeyboardView.findViewById(R.id.space);
         ImageButton enter = (ImageButton) customKeyboardView.findViewById(R.id.done);
+        popupPreview = (ConstraintLayout) customKeyboardView.findViewById(popup_preview);
 
         space.bringToFront();
+        popupPreview.bringToFront();
 
         space.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +164,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                                 }
                             }
                         }).start();
+
                         break;
 
                     case MotionEvent.ACTION_UP:
@@ -177,46 +191,77 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                int x, y;
-                x = (int) event.getX();
-                y = (int) (screenHeight - (customKeyboardView.findViewById(R.id.left_frame).getHeight() * density - (int) event.getY()));
-                touchPoint = new Point(x, y);
 
-                int primaryCode = getLeftKeyCode();
                 InputConnection ic = getCurrentInputConnection();
 
-                if(primaryCode == Keyboard.KEYCODE_SHIFT){
-                    isCaps = !isCaps;
-                    ImageView caps = (ImageView) customKeyboardView.findViewById(R.id.caps);
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        int x, y;
+                        x = (int) event.getX();
+                        y = (int) (screenHeight - (customKeyboardView.findViewById(R.id.left_frame).getHeight() * density - (int) event.getY()));
+                        touchPoint = new Point(x, y);
 
-                    // Provjera ako je shift ukljucen
-                    // Ide po id-evima i povecava / smanjuje slova u layoutu
-                    if(isCaps){
-                        caps.setColorFilter(ContextCompat.getColor(customKeyboardView.getContext(), R.color.pink));
+                        //int primaryCode = getLeftKeyCode();
+                        int textViewId = getLeftKeyCode();
 
-                        for(int id : ids){
-                            TextView t = (TextView) customKeyboardView.findViewById(id);
-                            String s = t.getText().toString();
-                            t.setText(s.toUpperCase());
+                        if(textViewId == Keyboard.KEYCODE_SHIFT){
+                            isCaps = !isCaps;
+                            ImageView caps = (ImageView) customKeyboardView.findViewById(R.id.caps);
+
+                            // Provjera ako je shift ukljucen
+                            // Ide po id-evima i povecava / smanjuje slova u layoutu
+                            if(isCaps){
+                                caps.setColorFilter(ContextCompat.getColor(customKeyboardView.getContext(), R.color.pink));
+
+                                for(int id : ids){
+                                    TextView t = (TextView) customKeyboardView.findViewById(id);
+                                    String s = t.getText().toString();
+                                    t.setText(s.toUpperCase());
+                                }
+                            }else{
+                                caps.setColorFilter(R.color.grey);
+                                for(int id : ids){
+                                    TextView t = (TextView) customKeyboardView.findViewById(id);
+                                    String s = t.getText().toString();
+                                    t.setText(s.toLowerCase());
+                                }
+                            }
+                            return false;
+                            //customKeyboardView.invalidate();
                         }
-                    }else{
-                        caps.setColorFilter(R.color.grey);
-                        for(int id : ids){
-                            TextView t = (TextView) customKeyboardView.findViewById(id);
-                            String s = t.getText().toString();
-                            t.setText(s.toLowerCase());
-                        }
-                    }
+                    case MotionEvent.ACTION_MOVE:
+                        x = (int) event.getX();
+                        y = (int) (screenHeight - (customKeyboardView.findViewById(R.id.left_frame).getHeight() * density - (int) event.getY()));
+                        touchPoint = new Point(x, y);
 
-                    //customKeyboardView.invalidate();
-                } else{
-                    char code = (char) primaryCode;
-                    if(Character.isLetter(code) && isCaps)
-                        code = Character.toUpperCase(code);
-                    ic.commitText(String.valueOf(code), 1);
+                        //int primaryCode = getLeftKeyCode();
+                         textViewId = getLeftKeyCode();
+                         if (textViewId != 0 && textViewId != Keyboard.KEYCODE_SHIFT){
+                            TextView textView = (TextView) customKeyboardView.findViewById(textViewId);
+                            String s = textView.getText().toString();
+                            code = (char) s.charAt(0);
+                            if(Character.isLetter(code) && isCaps)
+                                code = Character.toUpperCase(code);
+
+                            TextView previewLetter = (TextView) popupPreview.findViewById(R.id.letter);
+                            previewLetter.setText(s);
+                            popupPreview.setX(textView.getX() - (popupPreview.getWidth()/2) + (textView.getWidth()/2));
+                            popupPreview.setY(textView.getY() - popupPreview.getHeight() + textView.getHeight());
+                            popupPreview.setVisibility(View.VISIBLE);
+
+                        } else {
+                             code = 0;
+                             popupPreview.setVisibility(View.GONE);
+                             return false;
+                         }
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        ic.commitText(String.valueOf(code), 1);
+                        popupPreview.setVisibility(View.GONE);
+                        break;
                 }
 
-                return false;
+                return true;
             }
         });
     }
@@ -303,7 +348,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
         }
         else return 0;
 
-        return leftQwerty[i][j];
+        return leftIds[i][j];
     }
 
 
