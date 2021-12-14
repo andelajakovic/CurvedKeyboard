@@ -279,6 +279,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent"/>
 
+
     <androidx.constraintlayout.helper.widget.CircularFlow
         android:id="@+id/circularFlow_left"
         android:layout_width="730dp"
@@ -292,6 +293,19 @@
         app:layout_constraintStart_toStartOf="@id/center_left"
         app:layout_constraintTop_toTopOf="@id/center_left" />
 
+
+    <TextView
+        android:id="@+id/asterisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="*"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="@id/caps"
+        app:layout_constraintBottom_toBottomOf="@id/caps"
+        app:layout_constraintStart_toStartOf="@id/caps"
+        app:layout_constraintEnd_toEndOf="@id/caps"/>
 
     <TextView
         android:id="@+id/q"

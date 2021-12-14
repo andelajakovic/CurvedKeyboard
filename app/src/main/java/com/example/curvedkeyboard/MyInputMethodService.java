@@ -43,15 +43,27 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MyInputMethodService extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
-    private int[][] rightQwerty =
-            {{121, 117, 105, 111, 112},     // y u i o p
-                    {104, 106, 107, 108, 44},       // h j k l ,
-                    {0,98,110,109,46}};            // b n m .
+    private char[][] rightQwerty =
+            {{'y', 'u', 'i', 'o', 'p'},     // y u i o p
+                    {'h', 'j', 'k', 'l', ','},       // h j k l ,
+                    {0,'b','n','m','.'}};            // b n m .
+    private char[][] leftQwerty =
+            {{'q', 'w', 'e', 'r', 't'},     // q w e r t
+                    {'a', 's', 'd', 'f', 'g'},        // a s d f g
+                    {'z', 'x', 'c', 'v', 0}};           // z x c v
 
-    private int[][] leftQwerty =
-            {{113, 119, 101, 114, 116},     // q w e r t
-                    {97, 115, 100, 102, 103},        // a s d f g
-                    {122, 120, 99, 118, 0}};           // z x c v
+    private char[][] rightSpecial =
+            {{'6', '7', '8', '9', '0'},
+                    {'-', '+', '(', ')', '/'},
+                    {0, '!', '?', '.', ','}};
+    private char[][] leftSpecial =
+            {{'1', '2', '3', '4', '5'},
+                    {'@', '#', '$', '_', '&'},
+                    {'\"','\'',':',';', 0}};
+
+
+
+    public static boolean isSpecial = false;
 
     private int screenWidth, screenHeight;
     private float density;
@@ -62,6 +74,8 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
     private Button special, space;
     private ImageButton enter;
     private TextView previewLetter;
+    private ImageView caps;
+    private TextView asterisk;
 
     Keyboard keyboard;
     private boolean isCaps = false;
@@ -70,11 +84,6 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
     public static boolean rightIsLocked = false;
     public static boolean leftIsLocked = false;
     public static boolean threadStarted = false;
-
-    // Id-evi textViewa koji su potrebni prilikom povecanja slova
-    int[] ids = new int[]{R.id.q,R.id.w,R.id.e,R.id.r,R.id.t,R.id.y,R.id.u,R.id.i,R.id.o,R.id.p,
-            R.id.a,R.id.s,R.id.d,R.id.f,R.id.g,R.id.h,R.id.j,R.id.k,R.id.l,
-            R.id.z,R.id.x,R.id.c,R.id.v,R.id.b,R.id.n,R.id.m };
 
     private int[][] leftLetters =
             {{R.id.q,R.id.w,R.id.e,R.id.r,R.id.t},     // q w e r t
@@ -111,12 +120,15 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
         return customKeyboardView;
     }
 
+
     @Override
     public boolean onEvaluateFullscreenMode() {
         return false;
     }
 
     private void initViews(){
+        caps = customKeyboardView.findViewById(R.id.caps);
+        asterisk = customKeyboardView.findViewById(R.id.asterisk);
         special = (Button) customKeyboardView.findViewById(R.id.special);
         space = (Button) customKeyboardView.findViewById(R.id.space);
         enter = (ImageButton) customKeyboardView.findViewById(R.id.done);
@@ -125,11 +137,46 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
         space.bringToFront();
         popupPreview.bringToFront();
-        popupPreview.setX(0);
-        popupPreview.setY(0);
     }
 
     private void initListeners() {
+
+        special.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isSpecial = !isSpecial;
+
+                for(int i = 0; i < 3; i++){
+                    for(int j = 0; j < 5; j++){
+                        if(isSpecial){
+                            if(rightLetters[i][j] > 0){
+                                TextView rightLetter = (TextView) customKeyboardView.findViewById(rightLetters[i][j]);
+                                rightLetter.setText(String.valueOf(rightSpecial[i][j]));
+                            }
+                            if(leftLetters[i][j] > 0) {
+                                TextView leftLetter = (TextView) customKeyboardView.findViewById(leftLetters[i][j]);
+                                leftLetter.setText(String.valueOf(leftSpecial[i][j]));
+                            }
+                            caps.setVisibility(View.INVISIBLE);
+                            asterisk.setVisibility(View.VISIBLE);
+                            special.setText("ABC");
+                        } else{
+                            if(rightLetters[i][j] > 0) {
+                                TextView rightLetter = (TextView) customKeyboardView.findViewById(rightLetters[i][j]);
+                                rightLetter.setText(String.valueOf(rightQwerty[i][j]));
+                            }
+                            if(leftLetters[i][j] > 0) {
+                                TextView leftLetter = (TextView) customKeyboardView.findViewById(leftLetters[i][j]);
+                                leftLetter.setText(String.valueOf(leftQwerty[i][j]));
+                            }
+                            caps.setVisibility(View.VISIBLE);
+                            asterisk.setVisibility(View.INVISIBLE);
+                            special.setText("123?");
+                        }
+                    }
+                }
+            }
+        });
 
         space.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -254,25 +301,43 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
                             int textViewId = getLeftKeyId();
 
-                            if(textViewId == Keyboard.KEYCODE_SHIFT && event.getAction() == MotionEvent.ACTION_DOWN) {
+                            if(textViewId == Keyboard.KEYCODE_SHIFT && event.getAction() == MotionEvent.ACTION_DOWN && !isSpecial) {
                                 isCaps = !isCaps;
-                                ImageView caps = (ImageView) customKeyboardView.findViewById(R.id.caps);
+                                TextView textView;
 
                                 // Provjera ako je shift ukljucen
                                 // Ide po id-evima i povecava / smanjuje slova u layoutu
                                 if (isCaps) {
                                     caps.setColorFilter(ContextCompat.getColor(customKeyboardView.getContext(), R.color.pink));
-                                    for (int id : ids) {
-                                        TextView t = (TextView) customKeyboardView.findViewById(id);
-                                        String s = t.getText().toString();
-                                        t.setText(s.toUpperCase());
+                                    for(int i = 0; i < 3; i++){
+                                        for(int j = 0; j < 5; j++){
+                                            if(rightLetters[i][j] > 0){
+                                                textView = (TextView) customKeyboardView.findViewById(rightLetters[i][j]);
+                                                rightQwerty[i][j] = Character.toUpperCase(rightQwerty[i][j]);
+                                                textView.setText(String.valueOf(rightQwerty[i][j]));
+                                            }
+                                            if(leftLetters[i][j] > 0){
+                                                textView = (TextView) customKeyboardView.findViewById(leftLetters[i][j]);
+                                                leftQwerty[i][j] = Character.toUpperCase(leftQwerty[i][j]);
+                                                textView.setText(String.valueOf(leftQwerty[i][j]));
+                                            }
+                                        }
                                     }
                                 } else {
                                     caps.setColorFilter(R.color.grey);
-                                    for (int id : ids) {
-                                        TextView t = (TextView) customKeyboardView.findViewById(id);
-                                        String s = t.getText().toString();
-                                        t.setText(s.toLowerCase());
+                                    for(int i = 0; i < 3; i++){
+                                        for(int j = 0; j < 5; j++){
+                                            if(rightLetters[i][j] > 0){
+                                                textView = (TextView) customKeyboardView.findViewById(rightLetters[i][j]);
+                                                rightQwerty[i][j] = Character.toLowerCase(rightQwerty[i][j]);
+                                                textView.setText(String.valueOf(rightQwerty[i][j]));
+                                            }
+                                            if(leftLetters[i][j] > 0){
+                                                textView = (TextView) customKeyboardView.findViewById(leftLetters[i][j]);
+                                                leftQwerty[i][j] = Character.toLowerCase(leftQwerty[i][j]);
+                                                textView.setText(String.valueOf(leftQwerty[i][j]));
+                                            }
+                                        }
                                     }
                                 }
                                 rightIsLocked = false;
@@ -287,7 +352,18 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                                 popupPreview.setY(textView.getY() - popupPreview.getHeight() + textView.getHeight());
                                 popupPreview.setVisibility(View.VISIBLE);
                                 return true;
-                            } else {
+                            } else if (textViewId == Keyboard.KEYCODE_SHIFT && isSpecial){
+                                TextView textView = (TextView) customKeyboardView.findViewById(R.id.asterisk);
+                                String s = textView.getText().toString();
+                                code = (char) s.charAt(0);
+
+                                previewLetter.setText(s);
+                                popupPreview.setX(textView.getX() - (popupPreview.getWidth()/2) + (textView.getWidth()/2));
+                                popupPreview.setY(textView.getY() - popupPreview.getHeight() + textView.getHeight());
+                                popupPreview.setVisibility(View.VISIBLE);
+                                return true;
+                            }
+                            else {
                                 code = 0;
                                 popupPreview.setVisibility(View.GONE);
                                 rightIsLocked = false;
@@ -317,7 +393,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
         int i = 0, j = 0;
 
-        if(disAC <= 146*density && touchPoint.y > 73) return -5; // DEL
+        if(disAC <= 146*density && touchPoint.y < screenHeight - 73*density) return -5; // DEL
         if(disAC <= 365*density && disAC > 292*density){
             i = 0;
             if(angle >= 0 && angle < 10) j = 4;
@@ -360,7 +436,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
         int i = 0, j = 0;
 
-        if(disAC <= 146*density && touchPoint.y > 73) return -1; // DEL
+        if(disAC <= 146*density && touchPoint.y < screenHeight - 73*density) return -1; // DEL
         if(disAC <= 365*density && disAC > 292*density){
             i = 0;
             if(angle >= 0 && angle < 10) j = 0;
