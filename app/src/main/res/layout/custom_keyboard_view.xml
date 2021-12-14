@@ -100,7 +100,7 @@
         android:id="@+id/circularFlow_right"
         android:layout_width="730dp"
         android:layout_height="730dp"
-        app:circularflow_angles="345,335,325,315,305, 354,342,330,318,306,352,336,320,304,330"
+        app:circularflow_angles="355,345,335,325,315, 354,342,330,318,306,352,336,320,304,330"
         app:circularflow_radiusInDP="329,329,329,329,329, 256,256,256,256,256,183,183,183,183,120"
         app:circularflow_viewCenter="@id/center_right"
         app:constraint_referenced_ids="p,o,i,u,y,comma,l,k,j,h,period,m,n,b,del"

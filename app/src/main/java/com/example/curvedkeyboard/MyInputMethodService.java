@@ -69,6 +69,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
     char code = 0;
     public static boolean rightIsLocked = false;
     public static boolean leftIsLocked = false;
+    public static boolean threadStarted = false;
 
     // Id-evi textViewa koji su potrebni prilikom povecanja slova
     int[] ids = new int[]{R.id.q,R.id.w,R.id.e,R.id.r,R.id.t,R.id.y,R.id.u,R.id.i,R.id.o,R.id.p,
@@ -171,7 +172,9 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                             if(textViewId == Keyboard.KEYCODE_DELETE && event.getAction() == MotionEvent.ACTION_DOWN) {
                                 isDelPressed = true;
                                 // Potrebna je nova dretva da se moze dugo brisati i da izade iz petlje
-                                new Thread(new Runnable() {
+                                if(!threadStarted){
+                                    threadStarted = true;
+                                    new Thread(new Runnable() {
                                     @Override
                                     public void run() {
                                         while (isDelPressed) {
@@ -190,8 +193,11 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                                                 e.printStackTrace();
                                             }
                                         }
+                                        threadStarted = false;
                                     }
                                 }).start();
+                                }
+
                                 return true;
                             }
                             else if (textViewId > 0){
@@ -202,7 +208,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
                                 previewLetter.setText(s);
                                 popupPreview.setX(textView.getX() - (popupPreview.getWidth()/2) + (textView.getWidth()/2));
-                                popupPreview.setY(textView.getY() - popupPreview.getHeight() + textView.getHeight());
+                                popupPreview.setY(textView.getY() - popupPreview.getHeight() + textView.getHeight() + 1);
                                 popupPreview.setVisibility(View.VISIBLE);
                                 return true;
                             } else {
@@ -216,14 +222,14 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                             break;
                         case MotionEvent.ACTION_UP:
                             isDelPressed = false;
-                            if(code == keyboard.KEYCODE_DELETE) {
+                            /*if(code == keyboard.KEYCODE_DELETE) {
                                 // Ovako samo jedan karakter brise
                                 ic.commitText("", 0);
-                            } else {
+                            } else {*/
                                 if (code != 0) ic.commitText(String.valueOf(code), 1);
                                 popupPreview.setVisibility(View.GONE);
                                 code = 0;
-                            }
+                            //}
                             leftIsLocked = false;
                             space.setClickable(true);
                             enter.setClickable(true);
@@ -335,11 +341,11 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
         if(disAC <= 146*density && touchPoint.y > 73) return -5; // DEL
         if(disAC <= 365*density && disAC > 292*density){
             i = 0;
-            if(angle >= 10 && angle < 20) j = 4;
-            else if(angle >= 20 && angle < 30) j = 3;
-            else if(angle >= 30 && angle < 40) j = 2;
-            else if(angle >= 40 && angle < 50) j = 1;
-            else if(angle >= 50 && angle < 60) j = 0;
+            if(angle >= 0 && angle < 10) j = 4;
+            else if(angle >= 10 && angle < 20) j = 3;
+            else if(angle >= 20 && angle < 30) j = 2;
+            else if(angle >= 30 && angle < 40) j = 1;
+            else if(angle >= 40 && angle < 50) j = 0;
             else return 0;
         }
         else if (disAC <= 292*density && disAC > 219*density){
