@@ -158,9 +158,6 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                         case MotionEvent.ACTION_DOWN:
                         case MotionEvent.ACTION_MOVE:
                             leftIsLocked = true;
-                            space.setClickable(false);
-                            enter.setClickable(false);
-                            special.setClickable(false);
 
                             int x, y;
                             x = (int) (screenWidth - (customKeyboardView.findViewById(R.id.right_frame).getWidth() * density - (int) event.getX()));
@@ -215,9 +212,6 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                                 code = 0;
                                 popupPreview.setVisibility(View.GONE);
                                 leftIsLocked = false;
-                                space.setClickable(true);
-                                enter.setClickable(true);
-                                special.setClickable(true);
                             }
                             break;
                         case MotionEvent.ACTION_UP:
@@ -231,9 +225,6 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                                 code = 0;
                             //}
                             leftIsLocked = false;
-                            space.setClickable(true);
-                            enter.setClickable(true);
-                            special.setClickable(true);
                             break;
                     }
                 }
@@ -255,9 +246,6 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                         case MotionEvent.ACTION_DOWN:
                         case MotionEvent.ACTION_MOVE:
                             rightIsLocked = true;
-                            space.setClickable(false);
-                            enter.setClickable(false);
-                            special.setClickable(false);
 
                             int x, y;
                             x = (int) event.getX();
@@ -288,9 +276,6 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                                     }
                                 }
                                 rightIsLocked = false;
-                                space.setClickable(true);
-                                enter.setClickable(true);
-                                special.setClickable(true);
                             }
                             else if (textViewId > 0){
                                 TextView textView = (TextView) customKeyboardView.findViewById(textViewId);
@@ -306,9 +291,6 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                                 code = 0;
                                 popupPreview.setVisibility(View.GONE);
                                 rightIsLocked = false;
-                                space.setClickable(true);
-                                enter.setClickable(true);
-                                special.setClickable(true);
                             }
                             break;
                         case MotionEvent.ACTION_UP:
@@ -316,9 +298,6 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                             popupPreview.setVisibility(View.GONE);
                             code = 0;
                             rightIsLocked = false;
-                            space.setClickable(true);
-                            enter.setClickable(true);
-                            special.setClickable(true);
                             break;
                     }
                 }
