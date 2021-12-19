@@ -4,9 +4,6 @@
         android:endColor="@color/lightpink"
         android:startColor="@color/whitepink" />
 
-
-    <corners
-            android:topLeftRadius="360dp"
-        />
+    <corners android:topLeftRadius="360dp" />
 
 </shape>
