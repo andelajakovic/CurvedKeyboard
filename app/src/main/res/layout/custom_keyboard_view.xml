@@ -19,8 +19,8 @@
         android:id="@+id/popup_preview"
         android:layout_width="52dp"
         android:layout_height="146dp"
-        android:visibility="gone"
         android:background="@drawable/ripple_button_enter"
+        android:visibility="gone"
         tools:ignore="MissingConstraints,UnusedAttribute">
 
         <TextView
@@ -30,11 +30,11 @@
             android:gravity="center"
             android:text=""
             android:textColor="@color/white"
-            android:textStyle="bold"
             android:textSize="30sp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -42,8 +42,8 @@
     <Button
         android:id="@+id/space"
         android:layout_width="0dp"
-        android:layout_height="53dp"
-        android:layout_margin="10dp"
+        android:layout_height="63dp"
+        android:layout_margin="5dp"
         android:background="@drawable/space_layout"
         android:isRepeatable="true"
         app:layout_constraintStart_toEndOf="@+id/guideline_left"
@@ -54,7 +54,7 @@
     <FrameLayout
         android:id="@+id/space_frame"
         android:layout_width="match_parent"
-        android:layout_height="73dp"
+        android:layout_height="76dp"
         android:background="@color/whitepink"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,8 +76,8 @@
     <ImageButton
         android:id="@+id/done"
         android:layout_width="120dp"
-        android:layout_height="53dp"
-        android:layout_margin="10dp"
+        android:layout_height="63dp"
+        android:layout_margin="5dp"
         android:background="@drawable/ripple_button_enter"
         android:src="@drawable/ic_baseline_keyboard_return_24"
         android:text=""
@@ -100,7 +100,7 @@
         android:id="@+id/circularFlow_right"
         android:layout_width="730dp"
         android:layout_height="730dp"
-        app:circularflow_angles="355,345,335,325,315, 354,342,330,318,306,352,336,320,304,330"
+        app:circularflow_angles="350,340,330,320,310, 354,342,330,318,306,352,336,320,304,330"
         app:circularflow_radiusInDP="329,329,329,329,329, 256,256,256,256,256,183,183,183,183,120"
         app:circularflow_viewCenter="@id/center_right"
         app:constraint_referenced_ids="p,o,i,u,y,comma,l,k,j,h,period,m,n,b,del"
@@ -117,6 +117,7 @@
         android:gravity="center"
         android:text="p"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -126,6 +127,7 @@
         android:gravity="center"
         android:text="o"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -135,6 +137,7 @@
         android:gravity="center"
         android:text="i"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -144,6 +147,7 @@
         android:gravity="center"
         android:text="u"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -153,6 +157,7 @@
         android:gravity="center"
         android:text="y"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -162,6 +167,7 @@
         android:gravity="center"
         android:text=","
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -171,6 +177,7 @@
         android:gravity="center"
         android:text="l"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -180,6 +187,7 @@
         android:gravity="center"
         android:text="k"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -189,6 +197,7 @@
         android:gravity="center"
         android:text="j"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -198,6 +207,7 @@
         android:gravity="center"
         android:text="h"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -207,6 +217,7 @@
         android:gravity="center"
         android:text="."
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -216,6 +227,7 @@
         android:gravity="center"
         android:text="m"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -225,6 +237,7 @@
         android:gravity="center"
         android:text="n"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -234,6 +247,7 @@
         android:gravity="center"
         android:text="b"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <ImageView
@@ -261,8 +275,8 @@
     <Button
         android:id="@+id/special"
         android:layout_width="120dp"
-        android:layout_height="53dp"
-        android:layout_margin="10dp"
+        android:layout_height="63dp"
+        android:layout_margin="5dp"
         android:background="@drawable/space_layout"
         android:text="123?"
         android:textColor="@drawable/button_text_color"
@@ -302,6 +316,7 @@
         android:text="*"
         android:textSize="30sp"
         android:visibility="invisible"
+        android:textColor="@color/grey"
         app:layout_constraintTop_toTopOf="@id/caps"
         app:layout_constraintBottom_toBottomOf="@id/caps"
         app:layout_constraintStart_toStartOf="@id/caps"
@@ -315,6 +330,7 @@
         android:gravity="center"
         android:text="q"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1232dp"
         tools:layout_editor_absoluteY="552dp" />
@@ -326,6 +342,7 @@
         android:gravity="center"
         android:text="w"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -335,6 +352,7 @@
         android:gravity="center"
         android:text="e"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -344,6 +362,7 @@
         android:gravity="center"
         android:text="r"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -353,6 +372,7 @@
         android:gravity="center"
         android:text="t"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -362,6 +382,7 @@
         android:gravity="center"
         android:text="a"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -371,6 +392,7 @@
         android:gravity="center"
         android:text="s"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -380,6 +402,7 @@
         android:gravity="center"
         android:text="d"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -389,6 +412,7 @@
         android:gravity="center"
         android:text="f"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -398,6 +422,7 @@
         android:gravity="center"
         android:text="g"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -407,6 +432,7 @@
         android:gravity="center"
         android:text="z"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -416,6 +442,7 @@
         android:gravity="center"
         android:text="x"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -425,6 +452,7 @@
         android:gravity="center"
         android:text="c"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -434,6 +462,7 @@
         android:gravity="center"
         android:text="v"
         android:textSize="30sp"
+        android:textColor="@color/grey"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="171dp"
         tools:layout_editor_absoluteY="1157dp" />

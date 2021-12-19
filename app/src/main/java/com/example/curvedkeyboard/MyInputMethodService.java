@@ -112,8 +112,18 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
         topRightCorner = new Point(screenWidth, 0);
         topLeftCorner = new Point(0, 0);
 
-        customKeyboardView = (ConstraintLayout) getLayoutInflater().inflate(R.layout.custom_keyboard_view, null);
+        return null;
+    }
 
+    @Override
+    public void onWindowShown() {
+        super.onWindowShown();
+        setCandidatesViewShown(true);
+    }
+
+    @Override
+    public View onCreateCandidatesView() {
+        customKeyboardView = (ConstraintLayout) getLayoutInflater().inflate(R.layout.custom_keyboard_view, null);
         initViews();
         initListeners();
 
@@ -127,6 +137,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
     }
 
     private void initViews(){
+        ImageView del = customKeyboardView.findViewById(R.id.del);
         caps = customKeyboardView.findViewById(R.id.caps);
         asterisk = customKeyboardView.findViewById(R.id.asterisk);
         special = (Button) customKeyboardView.findViewById(R.id.special);
@@ -137,6 +148,10 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
 
         space.bringToFront();
         popupPreview.bringToFront();
+
+        caps.setColorFilter(ContextCompat.getColor(customKeyboardView.getContext(), R.color.grey));
+        del.setColorFilter(ContextCompat.getColor(customKeyboardView.getContext(), R.color.grey));
+
     }
 
     private void initListeners() {
@@ -198,7 +213,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                if(!rightIsLocked){
+                //if(!rightIsLocked){
                     InputConnection ic = getCurrentInputConnection();
 
                     switch (event.getAction()) {
@@ -274,7 +289,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                             leftIsLocked = false;
                             break;
                     }
-                }
+                //}
 
                 return false;
             }
@@ -286,7 +301,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
-                if(!leftIsLocked){
+                //if(!leftIsLocked){
                     InputConnection ic = getCurrentInputConnection();
 
                     switch (event.getAction()) {
@@ -324,7 +339,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                                         }
                                     }
                                 } else {
-                                    caps.setColorFilter(R.color.grey);
+                                    caps.setColorFilter(ContextCompat.getColor(customKeyboardView.getContext(), R.color.grey));
                                     for(int i = 0; i < 3; i++){
                                         for(int j = 0; j < 5; j++){
                                             if(rightLetters[i][j] > 0){
@@ -376,7 +391,7 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                             rightIsLocked = false;
                             break;
                     }
-                }
+                //}
 
                 return false;
             }
@@ -396,11 +411,11 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
         if(disAC <= 146*density && touchPoint.y < screenHeight - 73*density) return -5; // DEL
         if(disAC <= 365*density && disAC > 292*density){
             i = 0;
-            if(angle >= 0 && angle < 10) j = 4;
-            else if(angle >= 10 && angle < 20) j = 3;
-            else if(angle >= 20 && angle < 30) j = 2;
-            else if(angle >= 30 && angle < 40) j = 1;
-            else if(angle >= 40 && angle < 50) j = 0;
+            if(angle >= 5 && angle < 15) j = 4;
+            else if(angle >= 15 && angle < 25) j = 3;
+            else if(angle >= 25 && angle < 35) j = 2;
+            else if(angle >= 35 && angle < 45) j = 1;
+            else if(angle >= 45 && angle < 55) j = 0;
             else return 0;
         }
         else if (disAC <= 292*density && disAC > 219*density){
